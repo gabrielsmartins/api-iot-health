@@ -34,7 +34,7 @@ public class PatientEntity implements Serializable {
 	@Column(name = "CVHEIGHT", nullable = false)
 	private Double height;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "patient")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "measurementEntityId.patient")
 	private List<MeasurementEntity> measurements = new LinkedList<>();
 
 	public PatientEntity(Long id, String name, Double weight, Double height) {
