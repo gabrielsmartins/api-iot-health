@@ -1,13 +1,11 @@
-package br.edu.api.iot.service;
+package br.edu.api.iot.repository.custom;
 
 import java.util.List;
 
 import br.edu.api.iot.entity.MeasurementEntity;
 import br.edu.api.iot.enumeration.MeasurementTypeEnum;
 
-public interface IMeasurementService {
-	
-	public MeasurementEntity store(MeasurementEntity measurement);
+public interface MeasurementRepositoryCustom {
 	
 	public List<MeasurementEntity> findByPatientId(Long patientId);
 	

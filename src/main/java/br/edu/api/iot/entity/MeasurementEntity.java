@@ -31,7 +31,6 @@ public class MeasurementEntity implements Serializable {
 	private String unit;
 	
 	
-	
 
 	public MeasurementEntity(MeasurementEntityId measurementEntityId, Double value, MeasurementTypeEnum measurementType, String unit) {
 		this.measurementEntityId = measurementEntityId;
@@ -78,20 +77,7 @@ public class MeasurementEntity implements Serializable {
 	public void setUnit(String unit) {
 		this.unit = unit;
 	}
-	
-	
-	
-	
-	
 
-   
-
-	
- 
-	
-	
-	
-	
 	
 	
 	

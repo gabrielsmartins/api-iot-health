@@ -1,13 +1,16 @@
-package br.edu.api.iot.dto;
+package br.edu.api.iot.dto.response;
 
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class PatientDto implements Serializable {
+public class PatientResponseDto implements Serializable {
 
 
 	private static final long serialVersionUID = 1L;
+	
+	@JsonProperty("id")
+	private Long id;
 	
 	@JsonProperty("name")
 	private String name;
@@ -18,9 +21,23 @@ public class PatientDto implements Serializable {
 	@JsonProperty("height")
 	private Double height;
 	
-	public PatientDto() {
+	public PatientResponseDto() {
 		
 	}
+	
+	
+
+	public Long getId() {
+		return id;
+	}
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
 
 	public String getName() {
 		return name;

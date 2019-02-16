@@ -1,4 +1,4 @@
-package br.edu.api.iot.dto;
+package br.edu.api.iot.dto.request;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class MeasurementDto implements Serializable{
+public class MeasurementRequestDto implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;
@@ -27,7 +27,7 @@ public class MeasurementDto implements Serializable{
 	@JsonProperty("measurement_unit")
 	private String  measurementUnit;
 	
-	public MeasurementDto() {
+	public MeasurementRequestDto() {
 		
 	}
 
