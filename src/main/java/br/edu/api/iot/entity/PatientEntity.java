@@ -1,4 +1,4 @@
-package br.edu.api.entity;
+package br.edu.api.iot.entity;
 
 import java.io.Serializable;
 import java.util.LinkedList;

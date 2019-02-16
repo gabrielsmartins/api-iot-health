@@ -1,4 +1,4 @@
-package br.edu.api.entity;
+package br.edu.api.iot.entity;
 
 import java.io.Serializable;
 
@@ -8,8 +8,8 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import br.edu.api.converter.MeasurementTypeEnumConverter;
-import br.edu.api.enumeration.MeasurementTypeEnum;
+import br.edu.api.iot.converter.MeasurementTypeEnumConverter;
+import br.edu.api.iot.enumeration.MeasurementTypeEnum;
 
 @Entity
 @Table(name="TBMEASUREMENT")

@@ -1,10 +1,10 @@
-package br.edu.api.service;
+package br.edu.api.iot.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.edu.api.entity.MeasurementEntity;
-import br.edu.api.repository.MeasurementRepository;
+import br.edu.api.iot.entity.MeasurementEntity;
+import br.edu.api.iot.repository.MeasurementRepository;
 
 @Service
 public class MeasurementService implements IMeasurementService {
@@ -14,7 +14,7 @@ public class MeasurementService implements IMeasurementService {
 
 	@Override
 	public MeasurementEntity store(MeasurementEntity measurement) {
-		return repository.save(measurement);
+		return repository.saveAndFlush(measurement);
 
 	}
 

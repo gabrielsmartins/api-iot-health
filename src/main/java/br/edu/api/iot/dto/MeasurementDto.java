@@ -1,8 +1,9 @@
-package br.edu.api.dto;
+package br.edu.api.iot.dto;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MeasurementDto implements Serializable{
@@ -14,6 +15,7 @@ public class MeasurementDto implements Serializable{
 	private Long patientyId;
 	
 	@JsonProperty("datetime")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime datetime;
 	
 	@JsonProperty("measurement_type")

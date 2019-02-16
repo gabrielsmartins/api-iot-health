@@ -1,6 +1,6 @@
-package br.edu.api.service;
+package br.edu.api.iot.service;
 
-import br.edu.api.entity.MeasurementEntity;
+import br.edu.api.iot.entity.MeasurementEntity;
 
 public interface IMeasurementService {
 	

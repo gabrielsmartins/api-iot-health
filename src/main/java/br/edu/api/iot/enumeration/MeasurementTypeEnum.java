@@ -1,4 +1,4 @@
-package br.edu.api.enumeration;
+package br.edu.api.iot.enumeration;
 
 public enum MeasurementTypeEnum {
 
