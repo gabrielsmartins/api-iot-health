@@ -1,6 +1,9 @@
 package br.edu.api.iot.controller;
 
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,5 +44,14 @@ public class PatientController {
 		ModelMapper mapper = new ModelMapper();
 		PatientResponseDto patientResponseDto = mapper.map(patient, PatientResponseDto.class);
 		return new ResponseEntity<PatientResponseDto>(patientResponseDto, HttpStatus.OK);
+	}
+	
+	
+	@GetMapping()
+	public ResponseEntity<List<PatientResponseDto>> findAll() throws PatientNotFoundException{
+		List<PatientEntity> patients = service.findAll();	
+		ModelMapper mapper = new ModelMapper();
+		List<PatientResponseDto> patientsResponseDtp = mapper.map(patients, new TypeToken<List<PatientResponseDto>>() {}.getType());
+		return new ResponseEntity<List<PatientResponseDto>>(patientsResponseDtp, HttpStatus.OK);
 	}
 }

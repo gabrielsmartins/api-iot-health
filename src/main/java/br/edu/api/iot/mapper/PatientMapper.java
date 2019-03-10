@@ -19,5 +19,7 @@ public class PatientMapper {
 		PatientEntity patient = mapper.map(patientDto, PatientEntity.class);
 		return patient;
 	}
+	
+	
 
 }
