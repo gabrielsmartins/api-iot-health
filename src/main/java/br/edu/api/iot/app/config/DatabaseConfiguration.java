@@ -14,12 +14,21 @@ import com.zaxxer.hikari.HikariDataSource;
 public class DatabaseConfiguration {
 
 	 @Value("${spring.datasource.url}")
-	  private String dbUrl;
+	  private String url;
+	 
+	 @Value("${spring.datasource.username}")
+	  private String username;
+	 
+	 @Value("${spring.datasource.password}")
+	  private String password;
+	 
 
 	  @Bean
 	  public DataSource dataSource() {
 	      HikariConfig config = new HikariConfig();
-	      config.setJdbcUrl(dbUrl);
+	      config.setJdbcUrl(url);
+	      config.setUsername(username);
+	      config.setPassword(password);
 	      return new HikariDataSource(config);
 	  }
 	  
