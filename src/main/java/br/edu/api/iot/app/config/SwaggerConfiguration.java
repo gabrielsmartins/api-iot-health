@@ -17,10 +17,13 @@ public class SwaggerConfiguration {
 
 	@Bean
 	public Docket api() {
-		return new Docket(DocumentationType.SWAGGER_2).select()
+		return new Docket(DocumentationType.SWAGGER_2)
+				.select()
 				.apis(RequestHandlerSelectors.basePackage("br.edu.api.iot.controller"))
-				 .paths(PathSelectors.ant("/**"))
-				.build().apiInfo(apiInfo());
+				.paths(PathSelectors.any())
+				.build()
+				.pathMapping("/")
+	            .apiInfo(apiInfo());
 	}
 
 	private ApiInfo apiInfo() {
