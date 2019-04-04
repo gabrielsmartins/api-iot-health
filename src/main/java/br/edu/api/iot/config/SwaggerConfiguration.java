@@ -2,8 +2,6 @@ package br.edu.api.iot.config;
 
 import java.net.UnknownHostException;
 
-import javax.servlet.ServletContext;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -20,7 +18,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfiguration {
 	
 	@Bean
-	public Docket api(ServletContext servletContext) throws UnknownHostException {
+	public Docket api() throws UnknownHostException {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
 				.apis(RequestHandlerSelectors.basePackage("br.edu.api.iot.controller"))
