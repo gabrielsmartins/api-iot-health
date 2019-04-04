@@ -7,7 +7,7 @@
 	<groupId>br.edu.api.iot</groupId>
 	<artifactId>api-iot-health</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>api-iot-health</name>
 	<description>API IoT Health</description>
