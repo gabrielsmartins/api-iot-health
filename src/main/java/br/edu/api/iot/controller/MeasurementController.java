@@ -12,9 +12,12 @@ import br.edu.api.iot.dto.request.MeasurementRequestDto;
 import br.edu.api.iot.entity.MeasurementEntity;
 import br.edu.api.iot.mapper.MeasurementMapper;
 import br.edu.api.iot.service.MeasurementService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping(value="/api-iot-health/measurement")
+@RequestMapping(value="/api-iot-health/v1")
+@Api("API IoT Health - Measurement Documentation")
 public class MeasurementController {
 	
 	@Autowired
@@ -23,7 +26,8 @@ public class MeasurementController {
 	@Autowired
 	private MeasurementMapper mapper;
 	
-	@PostMapping()
+	@PostMapping("/measurement")
+	@ApiOperation("Store a new Measurement")
 	public ResponseEntity<?> storeMeasurement(@RequestBody MeasurementRequestDto measurementDto) {
 		MeasurementEntity measurementEntity = mapper.map(measurementDto);
 		service.store(measurementEntity);

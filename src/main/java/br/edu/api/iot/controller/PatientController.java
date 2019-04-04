@@ -20,9 +20,12 @@ import br.edu.api.iot.entity.PatientEntity;
 import br.edu.api.iot.exception.PatientNotFoundException;
 import br.edu.api.iot.mapper.PatientMapper;
 import br.edu.api.iot.service.PatientService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping(value="/api-iot-health/patient")
+@RequestMapping(value="/api-iot-health/v1")
+@Api("API IoT Health - Patient Documentation")
 public class PatientController {
 	
 	@Autowired
@@ -31,14 +34,16 @@ public class PatientController {
 	@Autowired
 	private PatientMapper mapper;
 	
-	@PostMapping()
+	@PostMapping("/patient")
+	@ApiOperation("Store a new Patient")
 	public ResponseEntity<?> storePatient(@RequestBody PatientRequestDto patientDto) {
 		PatientEntity patient = mapper.map(patientDto);
 		patient = service.store(patient);
 		return new ResponseEntity<Long>(patient.getId(), HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/{id_patient}")
+	@GetMapping("/patient/{id_patient}")
+	@ApiOperation("Find a Patient By Id")
 	public ResponseEntity<PatientResponseDto> findPatientById(@PathVariable("id_patient") Long patientId) throws PatientNotFoundException{
 		PatientEntity patient = service.findById(patientId);
 		ModelMapper mapper = new ModelMapper();
@@ -47,7 +52,8 @@ public class PatientController {
 	}
 	
 	
-	@GetMapping()
+	@GetMapping("/patient")
+	@ApiOperation("Find All Patients")
 	public ResponseEntity<List<PatientResponseDto>> findAll() throws PatientNotFoundException{
 		List<PatientEntity> patients = service.findAll();	
 		ModelMapper mapper = new ModelMapper();

@@ -1,4 +1,4 @@
-package br.edu.api.iot.app.config;
+package br.edu.api.iot.config;
 
 
 import javax.sql.DataSource;
