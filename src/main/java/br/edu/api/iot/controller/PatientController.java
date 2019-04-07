@@ -24,7 +24,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping(value="/api-iot-health/v1")
+@RequestMapping(value="/v1")
 @Api("API IoT Health - Patient Documentation")
 public class PatientController {
 	
