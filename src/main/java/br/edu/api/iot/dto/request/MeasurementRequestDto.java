@@ -6,6 +6,9 @@ import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import io.swagger.annotations.ApiModel;
+
+@ApiModel("Measurement Request")
 public class MeasurementRequestDto implements Serializable{
 
 	

@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import io.swagger.annotations.ApiModel;
+
+@ApiModel("Patient Request")
 public class PatientRequestDto implements Serializable {
 
 
