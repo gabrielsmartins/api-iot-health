@@ -22,7 +22,7 @@ public class MeasurementRequestDto implements Serializable{
 	private LocalDateTime datetime;
 	
 	@JsonProperty("measurement_type")
-	private Integer measurementType;
+	private String measurementType;
 	
 	@JsonProperty("measurement_value")
 	private Double measurementValue;
@@ -50,11 +50,11 @@ public class MeasurementRequestDto implements Serializable{
 		this.datetime = datetime;
 	}
 
-	public Integer getMeasurementType() {
+	public String getMeasurementType() {
 		return measurementType;
 	}
 
-	public void setMeasurementType(Integer measurementType) {
+	public void setMeasurementType(String measurementType) {
 		this.measurementType = measurementType;
 	}
 
