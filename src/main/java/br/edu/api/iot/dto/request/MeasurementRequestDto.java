@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel("Measurement Request")
 public class MeasurementRequestDto implements Serializable{
@@ -22,6 +23,7 @@ public class MeasurementRequestDto implements Serializable{
 	private LocalDateTime datetime;
 	
 	@JsonProperty("measurement_type")
+	@ApiModelProperty(dataType = "string", allowableValues = "HEARTRATE, OXYGEN SATURATION, TEMPERATURE", value = "description", notes = "notes")
 	private String measurementType;
 	
 	@JsonProperty("measurement_value")
