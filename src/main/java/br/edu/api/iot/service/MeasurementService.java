@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.edu.api.iot.entity.MeasurementEntity;
 import br.edu.api.iot.enumeration.MeasurementTypeEnum;
+import br.edu.api.iot.exception.MeasurementNotFoundException;
 import br.edu.api.iot.repository.MeasurementRepository;
 
 @Service
@@ -22,8 +23,10 @@ public class MeasurementService implements IMeasurementService {
 	}
 
 	@Override
-	public List<MeasurementEntity> findByPatientId(Long patientId) {
+	public List<MeasurementEntity> findByPatientId(Long patientId) throws MeasurementNotFoundException {
 		List<MeasurementEntity> measurements = repository.findByPatientId(patientId);
+		if(measurements.isEmpty())
+			throw new MeasurementNotFoundException("No Measurements found");
 		return measurements;
 	}
 

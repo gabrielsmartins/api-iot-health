@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -13,7 +14,7 @@ public class MeasurementEntityId implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="CVPATIENTID", referencedColumnName="CVPATIENTID")
 	private PatientEntity patient;
 	
@@ -34,21 +35,31 @@ public class MeasurementEntityId implements Serializable {
 	}
 
 
+
 	public PatientEntity getPatient() {
 		return patient;
 	}
+
+
 
 	public void setPatient(PatientEntity patient) {
 		this.patient = patient;
 	}
 
+
+
 	public LocalDateTime getDateTime() {
 		return dateTime;
 	}
 
+
+
 	public void setDateTime(LocalDateTime dateTime) {
 		this.dateTime = dateTime;
 	}
+
+
+	
 	
 	
 

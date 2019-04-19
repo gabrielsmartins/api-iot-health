@@ -46,38 +46,56 @@ public class MeasurementEntity implements Serializable {
 	}
 
 
+
 	public MeasurementEntityId getMeasurementEntityId() {
 		return measurementEntityId;
 	}
+
+
 
 	public void setMeasurementEntityId(MeasurementEntityId measurementEntityId) {
 		this.measurementEntityId = measurementEntityId;
 	}
 
+
+
 	public Double getValue() {
 		return value;
 	}
+
+
 
 	public void setValue(Double value) {
 		this.value = value;
 	}
 
+
+
 	public MeasurementTypeEnum getMeasurementType() {
 		return measurementType;
 	}
+
+
 
 	public void setMeasurementType(MeasurementTypeEnum measurementType) {
 		this.measurementType = measurementType;
 	}
 
+
+
 	public String getUnit() {
 		return unit;
 	}
+
+
 
 	public void setUnit(String unit) {
 		this.unit = unit;
 	}
 
+
+	
+	
 	
 	
 	
