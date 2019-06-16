@@ -1,0 +1,2 @@
+2019-06-16 18:37:35,945 INFO br.edu.api.iot.logging.ControllerLogging [http-nio-8080-exec-2] "name=Before :MeasurementController" "event_id=2019-06-16 18:37:35" "CLASS=class br.edu.api.iot.controller.MeasurementController" "METHOD=findByPatientId" "STATUS=SUCCESS"
+2019-06-16 18:37:36,884 INFO br.edu.api.iot.logging.ControllerLogging [http-nio-8080-exec-2] "name=After :MeasurementController" "event_id=2019-06-16 18:37:36" "CLASS=class br.edu.api.iot.controller.MeasurementController" "METHOD=findByPatientId" "STATUS=SUCCESS"

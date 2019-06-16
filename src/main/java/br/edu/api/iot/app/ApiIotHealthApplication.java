@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
@@ -13,6 +14,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan(basePackages= {"br.edu.api.iot.entity"})
 @EnableJpaRepositories(basePackages= {"br.edu.api.iot.repository"})
 @EnableCaching
+@EnableAspectJAutoProxy
 public class ApiIotHealthApplication extends SpringBootServletInitializer  { 
 
 	public static void main(String[] args) {

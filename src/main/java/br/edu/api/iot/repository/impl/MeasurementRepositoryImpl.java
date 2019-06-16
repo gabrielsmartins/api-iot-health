@@ -30,17 +30,7 @@ public class MeasurementRepositoryImpl implements MeasurementRepositoryCustom {
 		
 		List<MeasurementEntity> measurements = query.getResultList();
 		return measurements;
-		
-		/*EntityType<MeasurementEntity> measurementEntity_ = entityManager.getMetamodel().entity(MeasurementEntity.class);
-		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-		CriteriaQuery<MeasurementEntity> criteriaQuery = criteriaBuilder.createQuery(MeasurementEntity.class);
-		Root<MeasurementEntity> root = criteriaQuery.from(MeasurementEntity.class);
-		Join<MeasurementEntity, PatientEntity> join = root
-				.join(measurementEntity_.getSingularAttribute("measurementEntityId.patient", PatientEntity.class));
-		criteriaQuery.select(root)
-		             .where(criteriaBuilder.equal(join.get("id"),patientId));
-		List<MeasurementEntity> measurements = entityManager.createQuery(criteriaQuery).getResultList();
-		return measurements;*/
+
 	}
 
 	@Override
