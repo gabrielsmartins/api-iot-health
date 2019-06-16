@@ -2,6 +2,8 @@
 <configuration>
 
 	<property name="LOGS" value="./logs" />
+	<property resource="application.properties" />
+	<contextName>${spring.application.name}</contextName>
 
 	<appender name="STDOUT"
 		class="ch.qos.logback.core.ConsoleAppender">
@@ -16,23 +18,10 @@
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${LOGS}/splunk.log</file>
 
-		<encoder
-			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<Pattern>%d %p %C{1.} [%t] %m%n</Pattern>
-		</encoder>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%date{ISO8601} [%thread] %level: %msg%n</pattern>
+		</layout>
 
-		<!-- <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder"> 
-			<providers> <contextName> <fieldName>app</fieldName> </contextName> <timestamp> 
-			<fieldName>ts</fieldName> <timeZone>UTC</timeZone> </timestamp> <loggerName> 
-			<fieldName>logger</fieldName> </loggerName> <logLevel> <fieldName>level</fieldName> 
-			</logLevel> <callerData> <classFieldName>class</classFieldName> <methodFieldName>method</methodFieldName> 
-			<lineFieldName>line</lineFieldName> <fileFieldName>file</fileFieldName> </callerData> 
-			<threadName> <fieldName>thread</fieldName> </threadName> <mdc /> <arguments> 
-			<includeNonStructuredArguments>false </includeNonStructuredArguments> </arguments> 
-			<stackTrace> <fieldName>stack</fieldName> </stackTrace> <message> <fieldName>msg</fieldName> 
-			</message> </providers> </encoder> -->
-			
-			
 		<rollingPolicy
 			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!-- rollover daily and when the file reaches 10 MegaBytes -->
@@ -49,26 +38,16 @@
 	<appender name="socket" class="com.splunk.logging.TcpAppender">
 		<RemoteHost>127.0.0.1</RemoteHost>
 		<Port>15000</Port>
-
+		
 		<layout class="ch.qos.logback.classic.PatternLayout">
 			<pattern>%date{ISO8601} [%thread] %level: %msg%n</pattern>
 		</layout>
-
-		<!-- <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder"> 
-			<providers> <contextName> <fieldName>app</fieldName> </contextName> <timestamp> 
-			<fieldName>ts</fieldName> <timeZone>UTC</timeZone> </timestamp> <loggerName> 
-			<fieldName>logger</fieldName> </loggerName> <logLevel> <fieldName>level</fieldName> 
-			</logLevel> <callerData> <classFieldName>class</classFieldName> <methodFieldName>method</methodFieldName> 
-			<lineFieldName>line</lineFieldName> <fileFieldName>file</fileFieldName> </callerData> 
-			<threadName> <fieldName>thread</fieldName> </threadName> <mdc /> <arguments> 
-			<includeNonStructuredArguments>false </includeNonStructuredArguments> </arguments> 
-			<stackTrace> <fieldName>stack</fieldName> </stackTrace> <message> <fieldName>msg</fieldName> 
-			</message> </providers> </encoder> -->
+		
 	</appender>
 
 
 	<!-- LOG everything at INFO level -->
-	<root level="info,trace,warn">
+	<root level="info">
 		<appender-ref ref="STDOUT" />
 	</root>
 

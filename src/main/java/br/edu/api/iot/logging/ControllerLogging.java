@@ -71,5 +71,10 @@ public class ControllerLogging {
 		event.addField("STATUS", SUCCESS);
 		LOGGER.info(event.toString());
 	}
+	
+	
+	private String toJson(SplunkCimLogEvent splunkEvent) {
+		splunkEvent.addField(key, value);
+	}
 
 }
