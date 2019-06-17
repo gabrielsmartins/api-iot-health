@@ -2,6 +2,8 @@ package br.edu.api.iot.logging;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -14,8 +16,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.splunk.logging.SplunkCimLogEvent;
 
 @Aspect
 @Component
@@ -23,9 +25,9 @@ public class ControllerLogging {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger("splunk.logger");
 	
-	private static final String  SUCCESS = "SUCCESS";
+	private static final String  SUCCESS = "success";
 	
-	private static final String  ERROR = "ERROR";
+	private static final String  ERROR = "error";
 	
 	@Autowired
 	private ObjectMapper mapper;
@@ -45,36 +47,44 @@ public class ControllerLogging {
 
 	@Before("restController() && allMethod()")
 	public void before(JoinPoint joinPoint) {
-		SplunkCimLogEvent event = new SplunkCimLogEvent("Before :" + joinPoint.getSignature().getDeclaringType().getSimpleName(), LocalDateTime.now().format(dateTimeFormatter));
-		event.addField("CLASS", joinPoint.getSignature().getDeclaringType());
-		event.addField("METHOD", joinPoint.getSignature().getName());
-		event.addField("STATUS", SUCCESS);
-		LOGGER.info(event.toString());
+		Map<String, Object> properties = new LinkedHashMap<String, Object>();
+		properties.put("datetime", LocalDateTime.now().format(dateTimeFormatter));
+		properties.put("class", joinPoint.getSignature().getDeclaringType());
+		properties.put("method", joinPoint.getSignature().getName());
+		properties.put("status", SUCCESS);
+		LOGGER.info(toJson(properties));
 	}
 
 	@AfterThrowing(pointcut = "restController() && allMethod()", throwing = "e")
 	public void logAfterThrowing(JoinPoint joinPoint, Exception e) {
-		SplunkCimLogEvent event = new SplunkCimLogEvent("Error :" + joinPoint.getSignature().getDeclaringType().getSimpleName(), LocalDateTime.now().format(dateTimeFormatter));
-		event.addField("CLASS", joinPoint.getSignature().getDeclaringType().getSimpleName());
-		event.addField("METHOD", joinPoint.getSignature().getName());
-		event.addField("EXCEPTION", e.getMessage());
-		event.addField("CAUSE", e.getCause());
-		event.addField("STATUS", ERROR);
-		LOGGER.info(event.toString());
+		Map<String, Object> properties = new LinkedHashMap<String, Object>();
+		properties.put("class", joinPoint.getSignature().getDeclaringType().getSimpleName());
+		properties.put("method", joinPoint.getSignature().getName());
+		properties.put("exception", e.getMessage());
+		properties.put("cause", e.getCause());
+		properties.put("status", ERROR);
+		LOGGER.info(toJson(properties));
 	}
 
 	@After("restController() && allMethod()")
 	public void after(JoinPoint joinPoint) {
-		SplunkCimLogEvent event = new SplunkCimLogEvent("After :" + joinPoint.getSignature().getDeclaringType().getSimpleName(), LocalDateTime.now().format(dateTimeFormatter));
-		event.addField("CLASS", joinPoint.getSignature().getDeclaringType());
-		event.addField("METHOD", joinPoint.getSignature().getName());
-		event.addField("STATUS", SUCCESS);
-		LOGGER.info(event.toString());
+		Map<String, Object> properties = new LinkedHashMap<String, Object>();
+		properties.put("datetime", LocalDateTime.now().format(dateTimeFormatter));
+		properties.put("class", joinPoint.getSignature().getDeclaringType());
+		properties.put("method", joinPoint.getSignature().getName());
+		properties.put("status", SUCCESS);
+		LOGGER.info(toJson(properties));
 	}
 	
 	
-	private String toJson(SplunkCimLogEvent splunkEvent) {
-		splunkEvent.addField(key, value);
+	private String toJson(Map<String, Object> properties) {
+		try {
+			return 	mapper.writeValueAsString(properties);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return null;
+		
 	}
 
 }
